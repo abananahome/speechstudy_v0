@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explain Your Rankings</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <form id="explanationForm">
+
+    <div class="question">
+
+        <h3>Performance 1</h3>
+
+        <label for="explanation_OO_01">
+            Why did you rank this performance where you did?
+        </label>
+
+        <textarea
+            id="explanation_OO_01"
+            required
+        ></textarea>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>Performance 2</h3>
+
+        <label for="explanation_OO_02">
+            Why did you rank this performance where you did?
+        </label>
+
+        <textarea
+            id="explanation_OO_02"
+            required
+        ></textarea>
+
+    </div>
+	
+	<div class="question">
+
+        <h3>Performance 3</h3>
+
+        <label for="explanation_OO_03">
+            Why did you rank this performance where you did?
+        </label>
+
+        <textarea
+            id="explanation_OO_03"
+            required
+        ></textarea>
+
+    </div>
+	
+	<div class="question">
+
+        <h3>Performance 4</h3>
+
+        <label for="explanation_OO_04">
+            Why did you rank this performance where you did?
+        </label>
+
+        <textarea
+            id="explanation_OO_04"
+            required
+        ></textarea>
+
+    </div>
+	
+	<div class="question">
+
+        <h3>Performance 5</h3>
+
+        <label for="explanation_OO_05">
+            Why did you rank this performance where you did?
+        </label>
+
+        <textarea
+            id="explanation_OO_05"
+            required
+        ></textarea>
+
+    </div>
+	
+
+    <!-- Repeat through POI_05 -->
+
+
+    <button type="submit">
+        Continue
+    </button>
+
+</form>
+
+
+    </main>
+	<script src="../app.js"></script>
+
+<script>
+
+document
+    .getElementById("explanationForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const studyData = JSON.parse(
+            localStorage.getItem("studyData")
+        );
+
+
+        const poiSession = studyData.sessions.find(
+            session => session.event === "OO"
+        );
+
+
+        // List every speech ID
+
+        const speechIDs = [
+
+            "OO_01",
+            "OO_02",
+            "OO_03",
+            "OO_04",
+            "OO_05"
+
+        ];
+
+
+        // Attach each explanation to its speech
+
+        speechIDs.forEach(function(speechID) {
+
+            const evaluation = poiSession.evaluations.find(
+                evaluation => evaluation.speech_id === speechID
+            );
+
+
+            if (evaluation) {
+
+                evaluation.explanation =
+                    document.getElementById(
+                        "explanation_" + speechID
+                    ).value;
+
+            }
+
+        });
+
+
+        // Save updated data
+
+        localStorage.setItem(
+            "studyData",
+            JSON.stringify(studyData)
+        );
+
+
+        console.log(
+            "OO explanations saved:",
+            studyData
+        );
+
+
+        // Move to break
+
+        window.location.href = "recognition2.html";
+
+    });
+
+</script>
+</body>
+
+</html>

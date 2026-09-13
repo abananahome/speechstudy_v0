@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Complete</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <main class="study-container">
+
+        <h1>Study Complete</h1>
+
+
+        <p>
+            Thank you for participating in this study.
+        </p>
+
+
+        <p>
+            You have completed both evaluation sessions.
+        </p>
+
+
+        <p>
+            Your responses will contribute to research examining how
+            individuals differ in their evaluation of competitive speech
+            performances.
+        </p>
+
+
+        <p>
+            You may now close this window.
+        </p>
+
+	<button id="viewData" type="button">
+    View Study Data
+</button>
+
+</main>
+
+<pre id="dataOutput"></pre>
+
+
+<script src="../app.js"></script>
+
+<script>
+
+document
+    .getElementById("viewData")
+    .addEventListener("click", function() {
+
+        const studyData = JSON.parse(
+            localStorage.getItem("studyData")
+        );
+
+
+        document
+            .getElementById("dataOutput")
+            .textContent =
+                JSON.stringify(
+                    studyData,
+                    null,
+                    2
+                );
+
+    });
+
+</script>
+
+    
+</body>
+
+</html>

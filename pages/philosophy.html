@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Evaluation Philosophy</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <main class="study-container">
+
+        <div class="progress">
+            Part 2 of 6
+        </div>
+
+        <h1>Evaluation Philosophy</h1>
+
+        <p>
+            Before viewing the performances, we would like to understand
+            how you generally think about evaluating competitive speech.
+        </p>
+
+        <p>
+            There are no right or wrong answers. Please answer based on
+            your own experiences and judgment.
+        </p>
+
+
+        <!-- FORM STARTS HERE -->
+
+        <form id="philosophyForm">
+
+
+            <div class="question">
+
+                <label for="strong-speech">
+                    <strong>
+                        In your opinion, what makes a competitive speech
+                        performance strong or effective?
+                    </strong>
+                </label>
+
+                <textarea
+                    id="strong-speech"
+                    name="strong-speech"
+                    placeholder="Write your response here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="question">
+
+                <label for="comparison">
+                    <strong>
+                        When comparing two strong speech performances,
+                        what tends to make you prefer one over another?
+                    </strong>
+                </label>
+
+                <textarea
+                    id="comparison"
+                    name="comparison"
+                    placeholder="Write your response here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="question">
+
+                <label for="values">
+                    <strong>
+                        Are there particular qualities you consistently
+                        value or dislike when evaluating speech performances?
+                    </strong>
+                </label>
+
+                <textarea
+                    id="values"
+                    name="values"
+                    placeholder="Write your response here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit">
+                Continue to Evaluation
+            </button>
+
+        </form>
+
+    </main>
+
+
+    <!-- Load main JavaScript -->
+
+    <script src="../app.js"></script>
+
+
+    <!-- Save philosophy responses -->
+
+    <script>
+
+        document
+            .getElementById("philosophyForm")
+            .addEventListener("submit", function(event) {
+
+                // Prevent the browser from immediately reloading
+                event.preventDefault();
+
+
+                // Retrieve existing study data
+                const studyData = JSON.parse(
+                    localStorage.getItem("studyData")
+                );
+
+
+                // Safety check
+                if (!studyData) {
+
+                    alert(
+                        "Study session not found. Please restart the study."
+                    );
+
+                    window.location.href = "consent.html";
+
+                    return;
+                }
+
+
+                // Save responses
+
+                studyData.participant.philosophy.strong_speech =
+                    document.getElementById("strong-speech").value;
+
+                studyData.participant.philosophy.comparison =
+                    document.getElementById("comparison").value;
+
+                studyData.participant.philosophy.values =
+                    document.getElementById("values").value;
+
+
+                // Save updated data back to localStorage
+
+                localStorage.setItem(
+                    "studyData",
+                    JSON.stringify(studyData)
+                );
+
+
+                // Check that it worked
+
+                console.log(
+                    "Philosophy saved:",
+                    studyData
+                );
+
+
+                // Move to the first event
+
+                window.location.href = "event_intro.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

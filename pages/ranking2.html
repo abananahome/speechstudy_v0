@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rank Performances</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <form id="rankingForm">
+
+    <label for="rank1">
+        1st Place
+    </label>
+
+    <select id="rank1" required>
+
+        <option value="">Select a performance</option>
+
+        <option value="OO_01">Performance 1</option>
+        <option value="OO_02">Performance 2</option>
+        <option value="OO_03">Performance 3</option>
+        <option value="OO_04">Performance 4</option>
+        <option value="OO_05">Performance 5</option>
+
+    </select>
+
+
+    <br><br>
+
+
+    <label for="rank2">
+        2nd Place
+    </label>
+
+    <select id="rank2" required>
+
+        <option value="">Select a performance</option>
+
+        <option value="OO_01">Performance 1</option>
+        <option value="OO_02">Performance 2</option>
+        <option value="OO_03">Performance 3</option>
+        <option value="OO_04">Performance 4</option>
+        <option value="OO_05">Performance 5</option>
+
+    </select>
+
+    <!-- Repeat for rank3, rank4, rank5 -->
+	<br><br>
+
+
+    <label for="rank3">
+        3rd Place
+    </label>
+
+    <select id="rank3" required>
+
+        <option value="">Select a performance</option>
+
+        <option value="OO_01">Performance 1</option>
+        <option value="OO_02">Performance 2</option>
+        <option value="OO_03">Performance 3</option>
+        <option value="OO_04">Performance 4</option>
+        <option value="OO_05">Performance 5</option>
+
+    </select>
+
+	<br><br>
+
+
+    <label for="rank4">
+        4th Place
+    </label>
+
+    <select id="rank4" required>
+
+        <option value="">Select a performance</option>
+
+        <option value="OO_01">Performance 1</option>
+        <option value="OO_02">Performance 2</option>
+        <option value="OO_03">Performance 3</option>
+        <option value="OO_04">Performance 4</option>
+        <option value="OO_05">Performance 5</option>
+
+    </select>
+	<br><br>
+
+
+    <label for="rank5">
+        5th Place
+    </label>
+
+    <select id="rank5" required>
+
+        <option value="">Select a performance</option>
+
+        <option value="OO_01">Performance 1</option>
+        <option value="OO_02">Performance 2</option>
+        <option value="OO_03">Performance 3</option>
+        <option value="OO_04">Performance 4</option>
+        <option value="OO_05">Performance 5</option>
+
+    </select>
+    <br><br>
+
+    <button type="submit">
+        Continue
+    </button>
+
+</form>
+
+
+    </main>
+	    </main>
+
+
+        </main>
+
+
+    <script src="../app.js"></script>
+
+<script>
+
+document
+    .getElementById("rankingForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        // Collect rankings
+
+        const rankings = [
+
+            document.getElementById("rank1").value,
+            document.getElementById("rank2").value,
+            document.getElementById("rank3").value,
+            document.getElementById("rank4").value,
+            document.getElementById("rank5").value
+
+        ];
+
+
+        // Make sure every dropdown has an answer
+
+        if (rankings.includes("")) {
+
+            alert("Please rank all five performances.");
+
+            return;
+
+        }
+
+
+        // Make sure no performance appears twice
+
+        const uniqueRankings = new Set(rankings);
+
+        if (uniqueRankings.size !== 5) {
+
+            alert(
+                "Each performance must receive a different rank."
+            );
+
+            return;
+
+        }
+
+
+        // Retrieve study data
+
+        const studyData = JSON.parse(
+            localStorage.getItem("studyData")
+        );
+
+
+        // Find OO session
+
+        const ooSession = studyData.sessions.find(
+            session => session.event === "OO"
+        );
+
+
+        // Safety check
+
+        if (!ooSession) {
+
+            alert("OO session not found.");
+
+            return;
+
+        }
+
+
+        // IMPORTANT:
+        // Clear evaluations first in case participant goes back
+        // and submits rankings again.
+
+        ooSession.evaluations = [];
+
+
+        // Save ranking data
+
+        rankings.forEach(function(speechID, index) {
+
+            ooSession.evaluations.push({
+
+                speech_id: speechID,
+
+                rank: index + 1,
+
+                explanation: ""
+
+            });
+
+        });
+
+
+        // Save entire updated dataset
+
+        localStorage.setItem(
+            "studyData",
+            JSON.stringify(studyData)
+        );
+
+
+        console.log(
+            "OO rankings saved:",
+            studyData
+        );
+
+
+        // Move forward
+
+        window.location.href = "explanation2.html";
+
+    });
+
+</script>
+
+</body>
+
+</body>
+</body>
+
+</html>

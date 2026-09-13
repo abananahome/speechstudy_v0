@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Performance 1</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <main class="study-container">
+
+        <div class="progress">
+            Evaluation Session 1 of 2
+        </div>
+
+
+        <h1>Performance 4 of 5</h1>
+
+
+        <p>
+            Please watch the complete performance before continuing.
+        </p>
+
+
+        <div class="video-container">
+
+    <iframe
+    id="speechVideo"
+    src="https://player.vimeo.com/video/1202280547"
+    width="560"
+    height="315"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+</iframe>
+
+</div>
+
+
+        <a href="performance5.html">
+
+            <button type="button">
+                Continue to Performance 5
+            </button>
+
+        </a>
+
+
+    </main>
+	
+	<script src="https://player.vimeo.com/api/player.js"></script>
+	<script>
+
+const iframe = document.getElementById("speechVideo");
+
+const player = new Vimeo.Player(iframe);
+
+
+// Starting timestamp
+
+const startTime = 6 * 60 * 60 + 45 * 60 + 5;
+
+
+// Ending timestamp
+
+const endTime = 6 * 60 * 60 + 58 * 60 + 40;
+
+
+// Move video to correct starting point
+
+player.setCurrentTime(startTime);
+
+
+// Monitor playback time
+
+player.on("timeupdate", function(data) {
+
+    if (data.seconds >= endTime) {
+
+        player.pause();
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

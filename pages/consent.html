@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Consent</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <h1>Consent</h1>
+
+    <p>
+        Please read the information below before continuing.
+    </p>
+
+    <p>
+        By continuing, you indicate that you understand
+        the purpose of this study.
+    </p>
+
+
+    <button id="consentButton" type="button">
+        Continue
+    </button>
+
+
+    <!-- LOAD MAIN JAVASCRIPT -->
+    <script src="../app.js"></script>
+
+
+    <!-- PAGE-SPECIFIC JAVASCRIPT -->
+    <script>
+
+        document
+            .getElementById("consentButton")
+            .addEventListener("click", function() {
+
+                // Remove any previous test/study data
+                localStorage.removeItem("studyData");
+
+
+                // Create a new study session
+                initializeStudy();
+
+
+                // Move to background page
+                window.location.href = "background.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

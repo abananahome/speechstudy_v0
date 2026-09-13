@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Background Information</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <h1>Background Information</h1>
+
+    <p>Please answer the following questions.</p>
+
+
+    <!-- FORM STARTS HERE -->
+    <form id="backgroundForm">
+
+        <label for="currentRole">
+            What is your current role in Speech and Debate?
+        </label>
+
+        <br><br>
+
+        <input
+            type="text"
+            id="currentRole"
+            name="currentRole"
+            required
+        >
+
+        <br><br>
+
+
+        <label for="yearsParticipating">
+            How many years have you participated?
+        </label>
+
+        <br><br>
+
+        <input
+            type="number"
+            id="yearsParticipating"
+            name="yearsParticipating"
+            min="0"
+            required
+        >
+
+        <br><br>
+
+
+        <button type="submit">
+            Continue
+        </button>
+
+    </form>
+
+
+    <!-- LOAD MAIN JAVASCRIPT -->
+    <script src="../app.js"></script>
+
+
+    <!-- PAGE-SPECIFIC JAVASCRIPT -->
+    <script>
+
+        document
+            .getElementById("backgroundForm")
+            .addEventListener("submit", function(event) {
+
+                // Stop the browser from immediately submitting/reloading
+                event.preventDefault();
+
+
+                // Retrieve the existing study data
+                const studyData = JSON.parse(
+                    localStorage.getItem("studyData")
+                );
+
+
+                // Safety check
+                if (!studyData) {
+                    alert("Study session not found. Please restart the study.");
+                    window.location.href = "consent.html";
+                    return;
+                }
+
+
+                // Save current responses
+
+                studyData.participant.background.current_role =
+                    document.getElementById("currentRole").value;
+
+                studyData.participant.background.years_participating =
+                    document.getElementById("yearsParticipating").value;
+
+
+                // Save updated data back into localStorage
+                localStorage.setItem(
+                    "studyData",
+                    JSON.stringify(studyData)
+                );
+
+
+                // Check that it worked
+                console.log("Background saved:", studyData);
+
+
+                // Move to next page
+                window.location.href = "philosophy.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

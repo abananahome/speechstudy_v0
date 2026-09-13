@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evaluation Session</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <main class="study-container">
+
+        <div class="progress">
+            Evaluation Session 2 of 2
+        </div>
+
+
+        <h1>Original Oratory</h1>
+
+
+        <div class="instructions">
+
+            <h2>Instructions</h2>
+
+            <p>
+                In this session, you will watch five complete competitive
+                speech performances.
+            </p>
+
+            <p>
+                Please evaluate each performance according to your own
+                judgment. There is no required rubric or set of criteria.
+            </p>
+
+            <p>
+                Watch each performance in its entirety before continuing.
+            </p>
+
+            <p>
+                You will not be asked to rank the performances until you
+                have watched all five.
+            </p>
+
+            <p>
+                After viewing the complete set, you will rank the
+                performances relative to one another and explain your
+                evaluations.
+            </p>
+			
+			<p> 
+				Original Oratory is an event in which competitors write and 
+				memorize a speech based on a specifc topic or argument. 
+				
+		</p> 
+
+        </div>
+
+
+        <a href="performance6.html">
+            <button type="button">
+                Begin Performances
+            </button>
+        </a>
+		
+
+
+    </main>
+    <script src="../app.js"></script>
+
+    <script>
+
+        // Get the existing study data
+        const studyData = JSON.parse(
+            localStorage.getItem("studyData")
+        );
+
+
+        // Check whether a POI session already exists
+        const poiSessionExists = studyData.sessions.some(
+            session => session.event === "OO"
+        );
+
+
+        // Only create the session if it doesn't already exist
+        if (!ooSessionExists) {
+
+            const ooSession = {
+
+                session_id: "S002",
+
+                event: "OO,
+
+                evaluations: []
+
+            };
+
+
+            // Add session to study data
+            studyData.sessions.push(poiSession);
+
+
+            // Save updated study data
+            localStorage.setItem(
+                "studyData",
+                JSON.stringify(studyData)
+            );
+
+
+            console.log(
+                "OO session initialized:",
+                studyData
+            );
+
+        }
+
+    </script>
+
+</body>
+    
+
+</body>
+</body>
+
+</html>
